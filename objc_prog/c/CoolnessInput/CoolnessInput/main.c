@@ -10,7 +10,6 @@
 #include <readline/readline.h>
 
 int main(int argc, const char * argv[]) {
-//    printf("");
     const char *name = readline("Who is cool? ");
     printf("%s is cool.\n", name);
     return 0;
