@@ -10,17 +10,8 @@
 
 @interface BNRPerson : NSObject
 
-{
-    // BNRPerson has two instance variables
-    float _heightInMeters;
-    int _weightInKilos;
-}
-
-// BNRPerson has methods to read and set it's instance variables
-- (float)heightInMeters;
-- (void)setHeightInMeters:(float)h;
-- (int)weightInKilos;
-- (void)setWeightInKilos:(int)w;
+@property (nonatomic) float heightInMeters;
+@property (nonatomic) int weightInKilos;
 
 // BNRPerson has a method that calculates BMI
 - (float)bodyMassIndex;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1399591A2D0F7C00542E01 /* BNREmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1399581A2D0F7C00542E01 /* BNREmployee.m */; };
 		FA98231A1A2672A9005269BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9823191A2672A9005269BA /* main.m */; };
 		FA9823221A267314005269BA /* BNRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9823211A267314005269BA /* BNRPerson.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA1399571A2D0F7C00542E01 /* BNREmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNREmployee.h; sourceTree = "<group>"; };
+		FA1399581A2D0F7C00542E01 /* BNREmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNREmployee.m; sourceTree = "<group>"; };
 		FA9823161A2672A9005269BA /* BMITime */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BMITime; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9823191A2672A9005269BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA9823201A267314005269BA /* BNRPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPerson.h; sourceTree = "<group>"; };
@@ -46,6 +49,8 @@
 			children = (
 				FA9823201A267314005269BA /* BNRPerson.h */,
 				FA9823211A267314005269BA /* BNRPerson.m */,
+				FA1399571A2D0F7C00542E01 /* BNREmployee.h */,
+				FA1399581A2D0F7C00542E01 /* BNREmployee.m */,
 				FA9823181A2672A9005269BA /* BMITime */,
 				FA9823171A2672A9005269BA /* Products */,
 			);
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1399591A2D0F7C00542E01 /* BNREmployee.m in Sources */,
 				FA98231A1A2672A9005269BA /* main.m in Sources */,
 				FA9823221A267314005269BA /* BNRPerson.m in Sources */,
 			);
@@ -238,6 +244,7 @@
 				FA98231F1A2672A9005269BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

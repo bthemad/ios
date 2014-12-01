@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BNRStockHolding.h"
+#import "BNRForeignStockHolding.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -24,10 +25,11 @@ int main(int argc, const char * argv[]) {
         [share2 setNumberOfShares:90];
         [shares addObject:share2];
 
-        BNRStockHolding *share3 =  [[BNRStockHolding alloc] init];
-        [share3 setPurchaseSharePrice:45.1];
-        [share3 setCurrentSharePrice:49.51];
-        [share3 setNumberOfShares:210];
+        BNRForeignStockHolding *share3 = [[BNRForeignStockHolding alloc] init];
+        [share3 setPurchaseSharePrice:2.30];
+        [share3 setCurrentSharePrice:4.50];
+        [share3 setNumberOfShares:40];
+        [share3 setConversionRate: 0.94];
         [shares addObject:share3];
         
         for (BNRStockHolding *share in shares) {

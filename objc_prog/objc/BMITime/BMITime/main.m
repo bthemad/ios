@@ -7,17 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BNRPerson.h"
+#import "BNREmployee.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        BNRPerson *mikey =  [[BNRPerson alloc] init];
+        BNREmployee *mikey =  [[BNREmployee alloc] init];
         [mikey setWeightInKilos:96];
         [mikey setHeightInMeters:1.8];
+        [mikey setEmployeeId:12];
+        NSDateFormatter *dateFormat =  [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        [mikey setHireDate:[dateFormat dateFromString:@"2013-02-24"]];
+
         
         float height = [mikey heightInMeters];
         int weight = [mikey weightInKilos];
         NSLog(@"Mike is %.2f meters tall and weight %d kilos", height, weight);
+        NSLog(@"%@, hired on %@", mikey, mikey.hireDate);
+        NSLog(@"Years of employment: %.2f", [mikey yearsOfEmployment]);
         
         float bmi = [mikey bodyMassIndex];
         NSLog(@"Mike's BMI is: %.2f", bmi);
