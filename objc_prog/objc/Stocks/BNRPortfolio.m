@@ -9,6 +9,14 @@
 #import "BNRPortfolio.h"
 #import "BNRStockHolding.h"
 
+@interface BNRPortfolio ()
+
+{
+    NSMutableArray *_holdings;
+}
+
+@end
+
 @implementation BNRPortfolio
 
 - (void)addShare:(BNRStockHolding *)s
@@ -18,6 +26,13 @@
     }
     
     [_holdings addObject:s];
+}
+
+- (void)removeShare:(BNRStockHolding *)s
+{
+    if (_holdings && [_holdings containsObject:s]) {
+        [_holdings removeObject:s];
+    }
 }
 
 - (NSArray *)holdings

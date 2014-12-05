@@ -43,6 +43,9 @@ int main(int argc, const char * argv[]) {
         for (BNRStockHolding *share in [portfolio holdings]) {
             NSLog(@"%@", share);
         }
+        
+        [portfolio removeShare:share1];
+        NSLog(@"Total portfolio value is: %.2f", [portfolio currentValue]);
     }
     return 0;
 }
