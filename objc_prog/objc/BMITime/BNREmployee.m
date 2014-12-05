@@ -7,10 +7,48 @@
 //
 
 #import "BNREmployee.h"
+#import "BNRAsset.h"
 
 @implementation BNREmployee
 
-- (double) yearsOfEmployment
+- (void) setAssets:(NSArray *)a
+{
+    _assets = [a mutableCopy];
+}
+
+- (NSArray *)assets
+{
+    return [_assets copy];
+}
+
+- (void)addAsset:(BNRAsset *)a
+{
+    if (!_assets) {
+        _assets = [[NSMutableArray alloc] init];
+    }
+    [_assets addObject:a];
+    NSLog(@"Added an asset");
+}
+
+- (void)removeAsset:(BNRAsset *)a
+{
+    if (_assets) {
+        [_assets removeObject:a];
+        NSLog(@"Asset got removed");
+    }
+}
+
+- (unsigned int)valueOfAssets
+{
+    unsigned int sum = 0;
+    for (BNRAsset *a in _assets) {
+        sum += [a resaleValue];
+    }
+    
+    return sum;
+}
+
+- (double)yearsOfEmployment
 {
     if (self.hireDate) {
         NSDate *now = [NSDate date];
@@ -29,7 +67,13 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Employee #%d>", self.employeeId];
+    return [NSString stringWithFormat:@"<Employee #%u: %u in assets>",
+            self.employeeId, self.valueOfAssets];
+}
+
+- (void)dealloc
+{
+    NSLog(@"deallocating %@", self);
 }
 
 @end

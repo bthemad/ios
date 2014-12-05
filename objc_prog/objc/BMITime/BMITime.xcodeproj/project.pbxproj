@@ -10,6 +10,7 @@
 		FA1399591A2D0F7C00542E01 /* BNREmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1399581A2D0F7C00542E01 /* BNREmployee.m */; };
 		FA98231A1A2672A9005269BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9823191A2672A9005269BA /* main.m */; };
 		FA9823221A267314005269BA /* BNRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9823211A267314005269BA /* BNRPerson.m */; };
+		FADC503B1A31097D0067F0DF /* BNRAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = FADC503A1A31097D0067F0DF /* BNRAsset.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		FA9823191A2672A9005269BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA9823201A267314005269BA /* BNRPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPerson.h; sourceTree = "<group>"; };
 		FA9823211A267314005269BA /* BNRPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPerson.m; sourceTree = "<group>"; };
+		FADC50391A31097D0067F0DF /* BNRAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRAsset.h; sourceTree = "<group>"; };
+		FADC503A1A31097D0067F0DF /* BNRAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRAsset.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,8 @@
 				FA9823211A267314005269BA /* BNRPerson.m */,
 				FA1399571A2D0F7C00542E01 /* BNREmployee.h */,
 				FA1399581A2D0F7C00542E01 /* BNREmployee.m */,
+				FADC50391A31097D0067F0DF /* BNRAsset.h */,
+				FADC503A1A31097D0067F0DF /* BNRAsset.m */,
 				FA9823181A2672A9005269BA /* BMITime */,
 				FA9823171A2672A9005269BA /* Products */,
 			);
@@ -131,6 +136,7 @@
 				FA1399591A2D0F7C00542E01 /* BNREmployee.m in Sources */,
 				FA98231A1A2672A9005269BA /* main.m in Sources */,
 				FA9823221A267314005269BA /* BNRPerson.m in Sources */,
+				FADC503B1A31097D0067F0DF /* BNRAsset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
