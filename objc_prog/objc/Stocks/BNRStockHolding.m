@@ -20,4 +20,10 @@
     return [self currentSharePrice] * [self numberOfShares];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Stock %@: cost: %.2f, value: %.2f",
+            self.symbol, [self costInDollars], [self valueInDollars]];
+}
+
 @end
