@@ -37,6 +37,7 @@
         _assets = [[NSMutableArray alloc] init];
     }
     [_assets addObject:a];
+    a.holder = self;
     NSLog(@"Added an asset");
 }
 
