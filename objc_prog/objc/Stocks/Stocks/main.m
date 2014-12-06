@@ -37,12 +37,18 @@ int main(int argc, const char * argv[]) {
         [share3 setSymbol:@"LMN"];
         [portfolio addShare:share3];
         
+        BNRForeignStockHolding *share4 = [[BNRForeignStockHolding alloc] init];
+        [share4 setPurchaseSharePrice:2.30];
+        [share4 setCurrentSharePrice:3.50];
+        [share4 setNumberOfShares:40];
+        [share4 setConversionRate: 0.94];
+        [share4 setSymbol:@"CEO"];
+        [portfolio addShare:share4];
         
+        NSLog(@"Top 3 shares are: %@", [portfolio topHoldings]);
         NSLog(@"Total portfolio value is: %.2f", [portfolio currentValue]);
         
-        for (BNRStockHolding *share in [portfolio holdings]) {
-            NSLog(@"%@", share);
-        }
+        NSLog(@"Shares are: %@", [portfolio sortedHoldings]);
         
         [portfolio removeShare:share1];
         NSLog(@"Total portfolio value is: %.2f", [portfolio currentValue]);

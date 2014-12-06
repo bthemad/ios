@@ -40,6 +40,19 @@
     return [_holdings copy];
 }
 
+- (NSArray *)topHoldings
+{
+    NSSortDescriptor *valueSort = [NSSortDescriptor sortDescriptorWithKey:@"valueInDollars" ascending:NO];
+    NSArray *sortedHoldings = [self.holdings sortedArrayUsingDescriptors:@[valueSort]];
+    return [sortedHoldings subarrayWithRange:NSMakeRange(0, 3)];
+}
+
+- (NSArray *)sortedHoldings
+{
+    NSSortDescriptor *labelSort = [NSSortDescriptor sortDescriptorWithKey:@"symbol" ascending:YES];
+    return [self.holdings sortedArrayUsingDescriptors:@[labelSort]];
+}
+
 - (float)currentValue
 {
     float currentValue = 0;

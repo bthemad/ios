@@ -13,7 +13,7 @@
 
 @property (nonatomic) unsigned int employeeId;
 @property (nonatomic) NSDate *hireDate;
-@property (nonatomic, copy) NSMutableArray *assets;
+@property (nonatomic, copy) NSSet *assets;
 
 - (double) yearsOfEmployment;
 - (void) addAsset:(BNRAsset *)a;

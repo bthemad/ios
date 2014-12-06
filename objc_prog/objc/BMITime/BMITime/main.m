@@ -13,6 +13,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSMutableArray *employees = [[NSMutableArray alloc] init];
+        NSMutableDictionary *executives =  [[NSMutableDictionary alloc] init];
         
         for (int i = 0; i < 10; i++) {
             BNREmployee *employee = [[BNREmployee alloc] init];
@@ -21,6 +22,13 @@ int main(int argc, const char * argv[]) {
             employee.employeeId = i;
             
             [employees addObject:employee];
+            
+            if (i == 0) {
+                [executives setObject:employee forKey:@"CEO"];
+            }
+            if (i == 1) {
+                [executives setObject:employee forKey:@"CTO"];
+            }
         }
         
         NSMutableArray *allAssets = [[NSMutableArray alloc] init];
@@ -39,14 +47,30 @@ int main(int argc, const char * argv[]) {
             [allAssets addObject:asset];
         }
         
+        NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets"
+                                                              ascending:YES];
+        NSSortDescriptor *eid = [NSSortDescriptor sortDescriptorWithKey:@"employeeId"
+                                                              ascending:YES];
+        [employees sortUsingDescriptors:@[voa, eid]];
+
+        NSLog(@"Executives: %@", executives);
+        NSLog(@"CEO: %@", executives[@"CEO"]);
         NSLog(@"Employees: %@", employees);
+        
         NSLog(@"Giving up ownership of one employee");
         [employees removeObjectAtIndex:5];
         NSLog(@"All assets: %@", allAssets);
+        executives = nil;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 700"];
+        NSArray *toBeReclained = [allAssets filteredArrayUsingPredicate:predicate];
+        NSLog(@"to be reclaimed: %@", toBeReclained);
+        toBeReclained = nil;
+        
         NSLog(@"Giving up all employees");
         allAssets = nil;
         employees = nil;
     }
-
+    
     return 0;
 }

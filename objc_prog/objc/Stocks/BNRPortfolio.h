@@ -16,5 +16,7 @@
 - (void)addShare:(BNRStockHolding *)s;
 - (void)removeShare:(BNRStockHolding *)s;
 - (float)currentValue;
+- (NSArray *)topHoldings;
+- (NSArray *)sortedHoldings;
 
 @end
