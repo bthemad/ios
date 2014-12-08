@@ -8,6 +8,13 @@
 
 #import "AppDelegate.h"
 
+NSString *docPath() {
+    NSArray *pathList = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                            NSUserDomainMask,
+                                                            YES);
+    return [pathList[0] stringByAppendingPathComponent:@"data.td"];
+}
+
 @interface AppDelegate ()
 
 @end
@@ -18,6 +25,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    NSArray *plist = [NSArray arrayWithContentsOfFile:docPath()];
+    if (plist) {
+        self.tasks = [plist mutableCopy];
+    } else {
+        self.tasks = [NSMutableArray array];
+    }
+
     // Create and configure the UIWindow instance
     CGRect winFrame = [[UIScreen mainScreen] bounds];
     UIWindow *theWindow = [[UIWindow alloc] initWithFrame:winFrame];
@@ -32,6 +46,7 @@
     self.taskTable = [[UITableView alloc] initWithFrame:tableFrame
                                                   style:UITableViewStylePlain];
     self.taskTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.taskTable.dataSource = self;
     
     // Tell the table view withc class to instantiate whenever it needs to create a cell
     [self.taskTable registerClass:[UITableViewCell class]
@@ -48,9 +63,12 @@
     
     // Give the button a title
     [self.insertButton setTitle:@"Insert" forState:UIControlStateNormal];
-    
+    [self.insertButton addTarget:self
+                          action:@selector(addTask:)
+                forControlEvents:UIControlEventTouchUpInside];
+
     [self.window addSubview:self.taskTable];
-    [self.window addSubview:self.taskTable];
+    [self.window addSubview:self.taskField];
     [self.window addSubview:self.insertButton];
 
     // Finalize the window and put it on the screen
@@ -65,8 +83,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.tasks writeToFile:docPath() atomically:YES];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -79,6 +96,34 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+# pragma mark - Actions
+- (void)addTask:(id)sender {
+    NSString *text = [self.taskField text];
+
+    if ([text length] == 0) {
+        return;
+    }
+
+    [self.tasks addObject:text];
+    [self.taskTable reloadData];
+    [self.taskField setText:@""];
+    // Dismiss the keyboard
+    [self.taskField resignFirstResponder];
+}
+
+# pragma mark - Table view management
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.tasks count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *c = [self.taskTable dequeueReusableCellWithIdentifier:@"Cell"];
+    NSString *item = [self.tasks objectAtIndex:indexPath.row];
+    c.textLabel.text = item;
+
+    return c;
 }
 
 @end

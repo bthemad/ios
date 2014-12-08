@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NSString *docPath(void);
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIWindow *window;
 
