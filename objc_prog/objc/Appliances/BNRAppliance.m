@@ -27,4 +27,9 @@
     return self;
 }
 
+- (void)setVoltage:(int)voltage {
+    NSLog(@"Setting voltage to %d", voltage);
+    _voltage = voltage;
+}
+
 @end
