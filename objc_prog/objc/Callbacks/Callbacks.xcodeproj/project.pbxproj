@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA4120401A3DFEA700B0DDDD /* BNRObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = FA41203F1A3DFEA700B0DDDD /* BNRObserver.m */; };
 		FA81003B1A3476F300D6E0C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA81003A1A3476F300D6E0C0 /* main.m */; };
 		FA8100431A34777700D6E0C0 /* BNRLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8100421A34777700D6E0C0 /* BNRLogger.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA41203E1A3DFEA700B0DDDD /* BNRObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRObserver.h; sourceTree = "<group>"; };
+		FA41203F1A3DFEA700B0DDDD /* BNRObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRObserver.m; sourceTree = "<group>"; };
 		FA8100371A3476F200D6E0C0 /* Callbacks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Callbacks; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA81003A1A3476F300D6E0C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA8100411A34777700D6E0C0 /* BNRLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLogger.h; sourceTree = "<group>"; };
@@ -46,6 +49,8 @@
 			children = (
 				FA8100411A34777700D6E0C0 /* BNRLogger.h */,
 				FA8100421A34777700D6E0C0 /* BNRLogger.m */,
+				FA41203E1A3DFEA700B0DDDD /* BNRObserver.h */,
+				FA41203F1A3DFEA700B0DDDD /* BNRObserver.m */,
 				FA8100391A3476F200D6E0C0 /* Callbacks */,
 				FA8100381A3476F200D6E0C0 /* Products */,
 			);
@@ -124,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8100431A34777700D6E0C0 /* BNRLogger.m in Sources */,
+				FA4120401A3DFEA700B0DDDD /* BNRObserver.m in Sources */,
 				FA81003B1A3476F300D6E0C0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +244,7 @@
 				FA8100401A3476F300D6E0C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
