@@ -8,19 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Item : NSObject
+@interface Item : NSObject {
+    int _valueInDollars;
+}
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *serialNumber;
-@property (nonatomic) int valueInDollars;
 @property (nonatomic, readonly) NSDate *dateCreated;
 
 + (instancetype)randomItem;
 
+- (void)setValueInDollars:(int)v;
+- (int)valueInDollars;
+
 - (instancetype)initWithName:(NSString *)name
               valueInDollars:(int)value
                 serialNumber:(NSString *)sNumber;
-
+- (instancetype)initWithName:(NSString *)name
+                serialNumber:(NSString *)sNumber;
 - (instancetype)initWithName:(NSString *)name;
 
 @end
