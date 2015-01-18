@@ -12,14 +12,16 @@
     int _valueInDollars;
 }
 
+@property (nonatomic) Item *containedItem;
+@property (nonatomic) Item *container;
+
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *serialNumber;
 @property (nonatomic, readonly) NSDate *dateCreated;
+@property (nonatomic) int valueInDollars;
+
 
 + (instancetype)randomItem;
-
-- (void)setValueInDollars:(int)v;
-- (int)valueInDollars;
 
 - (instancetype)initWithName:(NSString *)name
               valueInDollars:(int)value
