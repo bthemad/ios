@@ -79,4 +79,13 @@
     _valueInDollars = v;
 }
 
+- (void)setContainedItem:(Item *)containedItem {
+    _containedItem = containedItem;
+    self.containedItem.container = self;
+}
+
+- (void)dealloc {
+    NSLog(@"Deallocated %@", self);
+}
+
 @end

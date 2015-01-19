@@ -13,7 +13,7 @@
 }
 
 @property (nonatomic) Item *containedItem;
-@property (nonatomic) Item *container;
+@property (nonatomic, weak) Item *container;
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *serialNumber;
