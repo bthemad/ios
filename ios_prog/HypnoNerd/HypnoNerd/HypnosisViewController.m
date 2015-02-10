@@ -27,6 +27,11 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"%@", NSStringFromClass([self class]));
+}
+
 - (void)loadView {
     HypnosisView *hypnosisView = [[HypnosisView alloc] init];
     self.view = hypnosisView;

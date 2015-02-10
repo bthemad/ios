@@ -39,4 +39,15 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:note];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"%@", NSStringFromClass([self class]));
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    self.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:60];
+}
+
 @end
