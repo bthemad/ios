@@ -140,17 +140,50 @@ let defString = optThing ?? "default string"
 
 
 // Strings and characters
+let emptyString = ""
+emptyString.isEmpty
+
+let dogString = "Dog!🐶"
+for c in dogString.characters {
+    print(c)
+}
+
+// construct back
+let catChars: [Character] = ["C", "a", "t", "!", "🐱"]
+var catString = String(catChars)
+
+catString.append(Character("!"))
+
+// string inside a string
+print("This is \(catString + "!11")")
+
+// extended grapheme claster in action
+var cafe = "cafe"
+cafe.characters.count
+cafe += "\u{301}"
+cafe.characters.count
+
+cafe[cafe.startIndex]
+cafe[cafe.startIndex.advancedBy(2)]
+cafe[cafe.endIndex.predecessor()]
+
+// iterate thorugh the characters with enumeration
+for idx in cafe.characters.indices {
+    print(idx, cafe[idx])
+}
+
+// insert/delete
+cafe.insert("!", atIndex: cafe.endIndex)
+cafe.insertContentsOf("Good ".characters, at: cafe.startIndex)
+let removedChar = cafe.removeAtIndex(cafe.endIndex.predecessor())
+cafe.removeRange(cafe.startIndex..<cafe.startIndex.advancedBy(5))
+
+cafe.hasPrefix("ca")
+cafe.hasSuffix("fé")
+// ------------------------------------------------------------------------ //
 
 
-
-
-
-
-
-
-
-
-
+// Collection types
 
 
 
