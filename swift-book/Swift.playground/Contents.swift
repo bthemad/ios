@@ -184,18 +184,62 @@ cafe.hasSuffix("fé")
 
 
 // Collection types
+var emptyInts = [Int]()
+emptyInts.append(37)
+let defaultArray = [Int](count: 5, repeatedValue: 42)
+let sumArray = emptyInts + defaultArray
+var shoppingList = ["Eggs", "Milk"]
+shoppingList.contains("Eggs")
+
+for (idx, item) in shoppingList.enumerate() {
+    print(idx, item)
+}
+
+var setOfLetters = Set<Character>()
+setOfLetters.insert("a")
+// Reset the set with array literal, still set
+setOfLetters = []
+setOfLetters.insert("b")
+// Using array literal to create set
+var newSet: Set<Character> = ["a", "b"]
+
+// loop through sorted items
+for c in newSet.sort() {
+    print(c)
+}
+
+var airports = [String: String]()
+airports = [:]
+airports = ["LHR": "London"]
+// returns the old value, so you can check if key existed before
+airports.updateValue("London Heathrow", forKey: "LHR")
+if let dme = airports.updateValue("Moscow DME", forKey: "DME") {
+    print("DME is a known thing")
+} else {
+    print("First time hear about DME")
+}
+
+// And you get nil in case the key doesn't exist
+if let dub = airports["DUB"] {
+    print(dub)
+} else {
+    print("Never heard of DUB")
+}
+
+if let lhr = airports.removeValueForKey("LHR") {
+    print("Removed LHR")
+} else {
+    print("LHR doesn't exist")
+}
+// You can delete existing or deleted item
+airports["LHR"] = nil
+for (code, name) in airports {
+    print(code, name, separator: " : ")
+}
+let airCodes = [String](airports.keys)
+let airNames = [String](airports.values)
+// ------------------------------------------------------------------------ //
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// Control flow
 
