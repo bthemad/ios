@@ -242,4 +242,31 @@ let airNames = [String](airports.values)
 
 
 // Control flow
+let point = (5, 3)
+switch point {
+case (0...3, 7):
+    print("range match")
+case let (x, y) where x > y:
+    print("filtered match")
+default:
+    print("obligatory default case")
+}
 
+func testGuard(optValue: String?) -> Bool {
+    guard let _ = optValue else {
+        print("Run, Forrest, run")
+        return false
+    }
+    return true
+}
+
+testGuard(nil)
+testGuard("anyway")
+
+if #available(iOS 9, *) {
+    print("we're lucky today")
+}
+// ------------------------------------------------------------------------ //
+
+
+// Functions
