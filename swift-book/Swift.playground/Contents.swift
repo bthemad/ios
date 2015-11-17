@@ -270,3 +270,43 @@ if #available(iOS 9, *) {
 
 
 // Functions
+func minMax() -> (min: Int, max: Int) {
+    return (32, 67)
+}
+
+let mm = minMax()
+// because it's in function definition
+print(mm.min, mm.max)
+
+func localAndExternalNames(externalName localName: Int) -> (Int)? {
+    print(localName)
+    return nil
+}
+
+localAndExternalNames(externalName: 32)
+
+// And example of default value
+func secondNamelesParameter(first: Int, _: Int = 74) {
+    return ()
+}
+
+secondNamelesParameter(57)
+
+func anyNumberYouGive(numbers: Int...) {
+    for number in numbers {
+        print(number)
+    }
+}
+
+anyNumberYouGive(32, 64, 71, 93)
+
+// function type as a parameter and return type, kinda hard to read
+func applyOp(a: Int = 0, b: Int = 0, op: (Int, Int) -> Int) -> ((Int, Int) -> Int, Int) {
+    return (op, op(a, b))
+}
+
+applyOp(3, b: 5, op: +)
+// ------------------------------------------------------------------------ //
+
+
+// Closures
