@@ -310,3 +310,40 @@ applyOp(3, b: 5, op: +)
 
 
 // Closures
+let namesToSort = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+func backwards(s1: String, _ s2: String) -> Bool {
+    return s2 > s1
+}
+let ns1 = namesToSort.sort(backwards)
+
+let ns2 = namesToSort.sort({ (s1: String, s2: String) -> Bool in
+    return s2 > s1
+})
+
+// types are always inferred
+let ns3 = namesToSort.sort({
+    s1, s2 in return s2 > s1
+})
+
+// single statement got returned by default
+let ns4 = namesToSort.sort({
+    s1, s2 in s2 > s1
+})
+
+// default parameter names
+let ns5 = namesToSort.sort({
+    $1 > $0
+})
+
+// operators are functions too
+let ns6 = namesToSort.sort(<)
+
+// trailing closure doesn't need braces
+// and if the function doesn't have other arguments, it doesn't need it either
+let ns7 = namesToSort.sort {
+    $1 > $0
+}
+// ------------------------------------------------------------------------ //
+
+
+// Enumerations
