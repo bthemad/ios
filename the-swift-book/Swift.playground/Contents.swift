@@ -406,3 +406,12 @@ func countNodes(tree: Tree) -> Int {
 let tree = Tree.Node(1, Tree.Leaf(1), Tree.Node(1, Tree.Leaf(0), Tree.Leaf(1)))
 countNodes(tree)
 
+class A {
+    let a: String = "a"
+}
+let a = A()
+let aa = a
+// object equality test, == is not supported by default
+a === aa
+
+
