@@ -347,3 +347,62 @@ let ns7 = namesToSort.sort {
 
 
 // Enumerations
+enum CompasPoint {
+    case North, South, East, West
+}
+
+var cp = CompasPoint.North
+// once the type is inferred, you can omit the common part
+cp = .East
+
+// enum with associated values
+enum Barcode {
+    case UPCA(Int)
+    case QRCode(String)
+}
+
+var bc1 = Barcode.UPCA(31337)
+var bc2 = Barcode.QRCode("THEVERYLONGSTRING")
+
+// no need for default case, let handle associated value extraction
+switch bc1 {
+case .UPCA(let codeNumber):
+    print("UPCA code: \(codeNumber)")
+case .QRCode(let codeString):
+    print("QR code: \(codeString)")
+}
+
+// enum with raw values, predefined for each case
+enum ASCIIControlCharacters: Character {
+    case Tab = "\t"
+    case Linefeed = "\n"
+    case CarriageReturn = "\r"
+}
+
+enum Month: Int {
+    case January = 1, February, March, April, May, June,
+    July, August, September, October, November, December
+}
+let june = Month.June
+print("No more zero-month: \(june.rawValue)")
+print("Default names: \(CompasPoint.East)")
+
+let july = Month(rawValue: 7)
+print("Month of: \(july)")
+
+indirect enum Tree {
+    case Leaf(Int)
+    case Node(Int, Tree, Tree)
+}
+
+func countNodes(tree: Tree) -> Int {
+    switch tree {
+    case .Leaf(let value):
+        return value
+    case .Node(let value, let left, let right):
+        return value + countNodes(left) + countNodes(right)
+    }
+}
+let tree = Tree.Node(1, Tree.Leaf(1), Tree.Node(1, Tree.Leaf(0), Tree.Leaf(1)))
+countNodes(tree)
+
