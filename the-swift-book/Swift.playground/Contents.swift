@@ -476,3 +476,14 @@ enum Switch {
         }
     }
 }
+
+// subscript in action, also can be used to set values
+struct TimesTable {
+    let multiplier: Int
+    subscript(index: Int) -> Int {
+        return multiplier * index
+    }
+}
+
+let stt = TimesTable(multiplier: 5)
+stt[3]
