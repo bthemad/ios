@@ -432,6 +432,12 @@ print(mb)
 
 struct Point {
     var x = 0, y = 0
+
+    // cause by default you can't modify value type's properties
+    mutating func moveBy(delta: Point) {
+        x += delta.x
+        y += delta.y
+    }
 }
 
 // getter and setter for computed property
@@ -443,8 +449,8 @@ struct Square {
             return Point(x: origin.x + (size / 2), y: origin.y + (size / 2))
         }
         set {
-            self.origin.x = newValue.x - (size / 2)
-            self.origin.y = newValue.y - (size / 2)
+            origin.x = newValue.x - (size / 2)
+            origin.y = newValue.y - (size / 2)
         }
     }
 }
@@ -453,5 +459,20 @@ struct Square {
 struct Star {
     var center: Int {
         return 17
+    }
+}
+
+enum Switch {
+    case Off, Low, High
+    // changing self with mutating method
+    mutating func next() {
+        switch self {
+        case Off:
+            self = Low
+        case Low:
+            self = High
+        case High:
+            self = Off
+        }
     }
 }
