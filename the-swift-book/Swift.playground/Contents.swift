@@ -414,4 +414,44 @@ let aa = a
 // object equality test, == is not supported by default
 a === aa
 
+struct B {
+    var b: String
 
+    init(b: String) {
+        self.b = b
+    }
+}
+
+let ib = B(b: "b")
+// can't change even the properties of immutable struct, even though .b is a var
+// this only is true for structs, cause they are value types
+// ib.b = "c"
+var mb = B(b: "b")
+mb.b = "c"
+print(mb)
+
+struct Point {
+    var x = 0, y = 0
+}
+
+// getter and setter for computed property
+struct Square {
+    var origin: Point
+    let size: Int
+    var center: Point {
+        get {
+            return Point(x: origin.x + (size / 2), y: origin.y + (size / 2))
+        }
+        set {
+            self.origin.x = newValue.x - (size / 2)
+            self.origin.y = newValue.y - (size / 2)
+        }
+    }
+}
+
+// getter only, shorthand notation
+struct Star {
+    var center: Int {
+        return 17
+    }
+}
