@@ -405,7 +405,10 @@ func countNodes(tree: Tree) -> Int {
 }
 let tree = Tree.Node(1, Tree.Leaf(1), Tree.Node(1, Tree.Leaf(0), Tree.Leaf(1)))
 countNodes(tree)
+// ------------------------------------------------------------------------ //
 
+
+// Classes and structures
 class A {
     let a: String = "a"
 }
@@ -487,3 +490,112 @@ struct TimesTable {
 
 let stt = TimesTable(multiplier: 5)
 stt[3]
+// ------------------------------------------------------------------------ //
+
+
+// Initialization
+struct Celsius {
+    var temperature: Double
+
+    init(_ celsius: Double) {
+        temperature = celsius
+    }
+
+    init(fromKelvin kelvin: Double) {
+        temperature = kelvin - 273.15
+    }
+
+    init(fromFahrenheit fahrenheit: Double) {
+        temperature = (fahrenheit - 32.0) / 1.8
+    }
+}
+
+class I {
+    var i: Int = 32
+}
+let ii = I()
+
+struct S {
+    var s: String = "string"
+}
+let ist = S(s: "another thing completely")
+ist.s
+
+// got default initializer (), cause all properties are set
+class Vehicle {
+    var numberOfWheels = 0
+
+    var description: String {
+        return "\(numberOfWheels) wheel(s)"
+    }
+}
+
+class Bicycle: Vehicle {
+    // overriding default, hence the keyword
+    override init() {
+        // call to super first
+        super.init()
+        numberOfWheels = 2
+    }
+}
+
+class Food {
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    convenience init() {
+        self.init(name: "[Undefined]")
+    }
+
+    func description() -> String {
+        return self.name
+    }
+}
+let magicFood = Food()
+magicFood.description()
+let normalFood = Food(name: "bacon")
+normalFood.description()
+
+class RecipeIngredient: Food {
+    var quantity: Int
+
+    init(name: String, quantity: Int) {
+        self.quantity = quantity
+        super.init(name: name)
+    }
+
+    // override because it's same parameters as designated init of Food
+    override convenience init(name: String) {
+        self.init(name: name, quantity: 1)
+    }
+
+    override func description() -> String {
+        return "\(self.quantity) of \(self.name)"
+    }
+}
+
+// we got the init() inherited from Food, 
+// it's a convenience one, so it calls RecipeIngredient.init(name) instead of Food.init(name)
+let ri = RecipeIngredient()
+ri.description()
+
+enum TemperatureUnit: Character {
+    case Kelvin = "K", Celsius = "C", Fahrenheit = "F"
+}
+
+let ftu = TemperatureUnit(rawValue: "F")
+let xtu = TemperatureUnit(rawValue: "X")
+
+class SomeWeirdClass {
+    let someReallyWeirdProperty: Int = {
+        // computation goes here
+        return 42
+        // "()" is necessary to call closure immediately, so the resutls goes into property
+    }()
+}
+
+let swc = SomeWeirdClass()
+swc.someReallyWeirdProperty
