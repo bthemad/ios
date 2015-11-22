@@ -639,3 +639,35 @@ a1 = nil
 // ------------------------------------------------------------------------ //
 
 // Optional chaining
+class OPerson {
+    var residence: OResidence?
+}
+
+class OResidence {
+    var numberOfRooms = 0
+
+    init(numberOfRooms: Int) {
+        self.numberOfRooms = numberOfRooms
+    }
+
+    func reportRooms() {
+        print("got \(self.numberOfRooms)")
+    }
+}
+
+let or = OResidence(numberOfRooms: 2)
+let op = OPerson()
+op.residence = or
+// optional chaining always brings you an optional, even if original property is not
+if let rooms = op.residence?.numberOfRooms {
+    print("got \(rooms)")
+} else {
+    print("got nothing")
+}
+
+// you even can call methods and if it's anything but nil (Void will work), it worked
+if op.residence?.reportRooms() != nil {
+    print("seems like report works")
+} else {
+    print("that's looks like nil, babe")
+}
