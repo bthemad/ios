@@ -599,3 +599,43 @@ class SomeWeirdClass {
 
 let swc = SomeWeirdClass()
 swc.someReallyWeirdProperty
+// ------------------------------------------------------------------------ //
+
+// ARC
+class APerson {
+    let name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    var apartment: AApartment?
+
+    deinit {
+        print("\(name) deinitialized")
+    }
+}
+
+class AApartment {
+    let unit: String
+
+    init(unit: String) {
+        self.unit = unit
+    }
+
+    weak var tenant: APerson?
+}
+
+var p1: APerson?
+var a1: AApartment?
+
+p1 = APerson(name: "Jack")
+a1 = AApartment(unit: "Abandoned one")
+p1?.apartment = a1
+a1?.tenant = p1
+
+p1 = nil
+a1 = nil
+// ------------------------------------------------------------------------ //
+
+// Optional chaining
