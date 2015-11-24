@@ -671,3 +671,6 @@ if op.residence?.reportRooms() != nil {
 } else {
     print("that's looks like nil, babe")
 }
+// ------------------------------------------------------------------------ //
+
+// Error handling
