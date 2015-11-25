@@ -405,7 +405,10 @@ func countNodes(tree: Tree) -> Int {
 }
 let tree = Tree.Node(1, Tree.Leaf(1), Tree.Node(1, Tree.Leaf(0), Tree.Leaf(1)))
 countNodes(tree)
+// ------------------------------------------------------------------------ //
 
+
+// Classes and structures
 class A {
     let a: String = "a"
 }
@@ -414,4 +417,260 @@ let aa = a
 // object equality test, == is not supported by default
 a === aa
 
+struct B {
+    var b: String
 
+    init(b: String) {
+        self.b = b
+    }
+}
+
+let ib = B(b: "b")
+// can't change even the properties of immutable struct, even though .b is a var
+// this only is true for structs, cause they are value types
+// ib.b = "c"
+var mb = B(b: "b")
+mb.b = "c"
+print(mb)
+
+struct Point {
+    var x = 0, y = 0
+
+    // cause by default you can't modify value type's properties
+    mutating func moveBy(delta: Point) {
+        x += delta.x
+        y += delta.y
+    }
+}
+
+// getter and setter for computed property
+struct Square {
+    var origin: Point
+    let size: Int
+    var center: Point {
+        get {
+            return Point(x: origin.x + (size / 2), y: origin.y + (size / 2))
+        }
+        set {
+            origin.x = newValue.x - (size / 2)
+            origin.y = newValue.y - (size / 2)
+        }
+    }
+}
+
+// getter only, shorthand notation
+struct Star {
+    var center: Int {
+        return 17
+    }
+}
+
+enum Switch {
+    case Off, Low, High
+    // changing self with mutating method
+    mutating func next() {
+        switch self {
+        case Off:
+            self = Low
+        case Low:
+            self = High
+        case High:
+            self = Off
+        }
+    }
+}
+
+// subscript in action, also can be used to set values
+struct TimesTable {
+    let multiplier: Int
+    subscript(index: Int) -> Int {
+        return multiplier * index
+    }
+}
+
+let stt = TimesTable(multiplier: 5)
+stt[3]
+// ------------------------------------------------------------------------ //
+
+
+// Initialization
+struct Celsius {
+    var temperature: Double
+
+    init(_ celsius: Double) {
+        temperature = celsius
+    }
+
+    init(fromKelvin kelvin: Double) {
+        temperature = kelvin - 273.15
+    }
+
+    init(fromFahrenheit fahrenheit: Double) {
+        temperature = (fahrenheit - 32.0) / 1.8
+    }
+}
+
+class I {
+    var i: Int = 32
+}
+let ii = I()
+
+struct S {
+    var s: String = "string"
+}
+let ist = S(s: "another thing completely")
+ist.s
+
+// got default initializer (), cause all properties are set
+class Vehicle {
+    var numberOfWheels = 0
+
+    var description: String {
+        return "\(numberOfWheels) wheel(s)"
+    }
+}
+
+class Bicycle: Vehicle {
+    // overriding default, hence the keyword
+    override init() {
+        // call to super first
+        super.init()
+        numberOfWheels = 2
+    }
+}
+
+class Food {
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    convenience init() {
+        self.init(name: "[Undefined]")
+    }
+
+    func description() -> String {
+        return self.name
+    }
+}
+let magicFood = Food()
+magicFood.description()
+let normalFood = Food(name: "bacon")
+normalFood.description()
+
+class RecipeIngredient: Food {
+    var quantity: Int
+
+    init(name: String, quantity: Int) {
+        self.quantity = quantity
+        super.init(name: name)
+    }
+
+    // override because it's same parameters as designated init of Food
+    override convenience init(name: String) {
+        self.init(name: name, quantity: 1)
+    }
+
+    override func description() -> String {
+        return "\(self.quantity) of \(self.name)"
+    }
+}
+
+// we got the init() inherited from Food, 
+// it's a convenience one, so it calls RecipeIngredient.init(name) instead of Food.init(name)
+let ri = RecipeIngredient()
+ri.description()
+
+enum TemperatureUnit: Character {
+    case Kelvin = "K", Celsius = "C", Fahrenheit = "F"
+}
+
+let ftu = TemperatureUnit(rawValue: "F")
+let xtu = TemperatureUnit(rawValue: "X")
+
+class SomeWeirdClass {
+    let someReallyWeirdProperty: Int = {
+        // computation goes here
+        return 42
+        // "()" is necessary to call closure immediately, so the resutls goes into property
+    }()
+}
+
+let swc = SomeWeirdClass()
+swc.someReallyWeirdProperty
+// ------------------------------------------------------------------------ //
+
+// ARC
+class APerson {
+    let name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    var apartment: AApartment?
+
+    deinit {
+        print("\(name) deinitialized")
+    }
+}
+
+class AApartment {
+    let unit: String
+
+    init(unit: String) {
+        self.unit = unit
+    }
+
+    weak var tenant: APerson?
+}
+
+var p1: APerson?
+var a1: AApartment?
+
+p1 = APerson(name: "Jack")
+a1 = AApartment(unit: "Abandoned one")
+p1?.apartment = a1
+a1?.tenant = p1
+
+p1 = nil
+a1 = nil
+// ------------------------------------------------------------------------ //
+
+// Optional chaining
+class OPerson {
+    var residence: OResidence?
+}
+
+class OResidence {
+    var numberOfRooms = 0
+
+    init(numberOfRooms: Int) {
+        self.numberOfRooms = numberOfRooms
+    }
+
+    func reportRooms() {
+        print("got \(self.numberOfRooms)")
+    }
+}
+
+let or = OResidence(numberOfRooms: 2)
+let op = OPerson()
+op.residence = or
+// optional chaining always brings you an optional, even if original property is not
+if let rooms = op.residence?.numberOfRooms {
+    print("got \(rooms)")
+} else {
+    print("got nothing")
+}
+
+// you even can call methods and if it's anything but nil (Void will work), it worked
+if op.residence?.reportRooms() != nil {
+    print("seems like report works")
+} else {
+    print("that's looks like nil, babe")
+}
+// ------------------------------------------------------------------------ //
+
+// Error handling
